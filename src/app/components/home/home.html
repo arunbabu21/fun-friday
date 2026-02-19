@@ -1,0 +1,29 @@
+<div class="home-container">
+  <h1>Fun Friday Games</h1>
+  <div class="content-wrapper">
+    
+    <div class="scores-table">
+      <div class="table-row header">
+        <div class="table-cell game-name">Games</div>
+        <div class="table-cell team-name">Mohan's Team</div>
+        <div class="table-cell team-name">Shanika's Team</div>
+      </div>
+      @for (score of scores; track score.game) {
+        <div class="table-row">
+          <div class="table-cell game-btn-cell" [routerLink]="score.game === 'Game 1' ? '/game1' : score.game === 'Game 2' ? '/game2' : score.game === 'Game 3' ? '/game3' : score.game === 'Game 4' ? '/game4' : '/game5'">{{ score.game }}</div>
+          <div class="table-cell score">
+            <button class="score-btn-single" (click)="setScore(score, 'mohan', score.mohan === 0 ? 1 : 0)">{{ score.mohan }}</button>
+          </div>
+          <div class="table-cell score">
+            <button class="score-btn-single" (click)="setScore(score, 'shanika', score.shanika === 0 ? 1 : 0)">{{ score.shanika }}</button>
+          </div>
+        </div>
+      }
+      <div class="table-row total-row">
+        <div class="table-cell game-name">Total</div>
+        <div class="table-cell score total-cell">{{ getMohanTotal() }}</div>
+        <div class="table-cell score total-cell">{{ getShaniakaTotal() }}</div>
+      </div>
+    </div>
+  </div>
+</div>
