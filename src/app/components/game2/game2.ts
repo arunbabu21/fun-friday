@@ -33,8 +33,8 @@ export class Game2 {
 
   // helper to build full asset path
   getImagePath(name: string | null) {
-    // use relative asset path (no leading slash) so assets work when app is deployed
-    // under a subpath or different base-href
+    // use dot-relative path so browser resolves assets relative to the current
+    // served path (works for GitHub Pages served at /<repo>/)
     return name ? 'assets/game2/' + name : '';
   }
 
