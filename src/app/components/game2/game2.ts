@@ -24,10 +24,16 @@ export class Game2 {
     '5.png',
     '6.png',
   ];
+  // no image selected by default; only show after user clicks a button
   selectedImage = signal<string | null>(null);
 
   showImage(name: string) {
     this.selectedImage.set(name);
+  }
+
+  // helper to build full asset path
+  getImagePath(name: string | null) {
+    return name ? '/assets/game2/' + name : '';
   }
 
   toggleCountdown() {
@@ -50,6 +56,8 @@ export class Game2 {
       if (val <= 0) {
         this.stopCountdown();
         this.message.set('Stop!!!!! Timeout');
+        // hide any shown image when time runs out
+        this.selectedImage.set(null);
         setTimeout(() => {
           this.remaining.set(10);
         }, 1000);

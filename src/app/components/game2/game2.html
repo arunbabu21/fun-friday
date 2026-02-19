@@ -5,21 +5,23 @@
   <div class="timer-area">
     <div class="timer-display">{{ remaining() }}s</div>
     <button class="timer-btn" (click)="toggleCountdown()">{{ running() ? 'Pause' : 'Ready' }}</button>
-    <div class="timer-message" [class.timeout]="message() === 'STop!!!!! Timeout'">{{ message() }}</div>
+    <div class="timer-message" [class.timeout]="message() === 'Stop!!!!! Timeout'">{{ message() }}</div>
   </div>
 
   <div class="image-section">
     <div class="image-btns">
-      <button class="image-btn" (click)="showImage(images[0])">Image 1</button>
-      <button class="image-btn" (click)="showImage(images[1])">Image 2</button>
-      <button class="image-btn" (click)="showImage(images[2])">Image 3</button>
-      <button class="image-btn" (click)="showImage(images[3])">Image 4</button>
-      <button class="image-btn" (click)="showImage(images[4])">Image 5</button>
-      <button class="image-btn" (click)="showImage(images[5])">Image 6</button>
+      <button
+        class="image-btn"
+        *ngFor="let img of images; let i = index"
+        (click)="showImage(img)"
+        [class.active]="selectedImage() === img"
+      >
+        Image {{ i + 1 }}
+      </button>
     </div>
 
     <div class="preview" *ngIf="selectedImage()">
-      <img [src]="'/assets/game2/' + selectedImage()" [alt]="selectedImage()" />
+      <img [src]="getImagePath(selectedImage())" [alt]="selectedImage()" />
     </div>
   </div>
 
