@@ -33,7 +33,9 @@ export class Game2 {
 
   // helper to build full asset path
   getImagePath(name: string | null) {
-    return name ? '/assets/game2/' + name : '';
+    // use relative asset path (no leading slash) so assets work when app is deployed
+    // under a subpath or different base-href
+    return name ? 'assets/game2/' + name : '';
   }
 
   toggleCountdown() {
