@@ -1,17 +1,34 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-game2',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './game2.html',
   styleUrl: './game2.css',
 })
 export class Game2 {
+  // existing timer signals
   remaining = signal(10);
   running = signal(false);
   message = signal('');
   private intervalId: any = null;
+
+  // images for Game2 - files should be placed in `src/assets/game2/`
+  images = [
+    '1.png',
+    '2.png',
+    '3.png',
+    '4.png',
+    '5.png',
+    '6.png',
+  ];
+  selectedImage = signal<string | null>(null);
+
+  showImage(name: string) {
+    this.selectedImage.set(name);
+  }
 
   toggleCountdown() {
     if (this.running()) {

@@ -1,11 +1,26 @@
 <div class="game-container">
-  <h1>Act It Out (Camera On Version)</h1>
-  <p>Team can select a player from opposit team. Player gets a film name privately in chat. They act it out silently.</p>
+  <h1>Memory Challenge</h1>
+  <p>Team can select a player from opposit team. Will show a slide with 20 objects for 10 seconds. Say maximum items name in 10 seconds.</p>
 
   <div class="timer-area">
     <div class="timer-display">{{ remaining() }}s</div>
     <button class="timer-btn" (click)="toggleCountdown()">{{ running() ? 'Pause' : 'Ready' }}</button>
     <div class="timer-message" [class.timeout]="message() === 'STop!!!!! Timeout'">{{ message() }}</div>
+  </div>
+
+  <div class="image-section">
+    <div class="image-btns">
+      <button class="image-btn" (click)="showImage(images[0])">Image 1</button>
+      <button class="image-btn" (click)="showImage(images[1])">Image 2</button>
+      <button class="image-btn" (click)="showImage(images[2])">Image 3</button>
+      <button class="image-btn" (click)="showImage(images[3])">Image 4</button>
+      <button class="image-btn" (click)="showImage(images[4])">Image 5</button>
+      <button class="image-btn" (click)="showImage(images[5])">Image 6</button>
+    </div>
+
+    <div class="preview" *ngIf="selectedImage()">
+      <img [src]="'/assets/game2/' + selectedImage()" [alt]="selectedImage()" />
+    </div>
   </div>
 
   <button [routerLink]="'/'" class="back-btn">← Back to Home</button>

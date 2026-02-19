@@ -83,3 +83,37 @@ p {
 .timer-message.timeout {
   color: #ff4d4f;
 }
+
+.image-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.image-btns {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-btn {
+  padding: 0.5rem 0.9rem;
+  background: rgba(255,255,255,0.06);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.image-btn:hover { transform: translateY(-2px); }
+
+.preview img {
+  max-width: 90vw;
+  max-height: 60vh;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
