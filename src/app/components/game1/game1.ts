@@ -36,7 +36,7 @@ export class Game1 {
       const val = this.remaining();
       if (val <= 0) {
         this.stopCountdown();
-        this.message.set('STop!!!!! Timeout');
+        this.message.set('Stop!!!!! Timeout');
         // auto-reset after short delay so user sees 0 and message
         setTimeout(() => {
           this.remaining.set(30);
