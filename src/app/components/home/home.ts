@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ScoreService, ScoreRow } from '../../services/score.service';
 
 @Component({
   selector: 'app-home',
@@ -9,32 +10,28 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './home.css',
 })
 export class Home {
-  scores = [
-    { game: 'Game 1', mohan: 0, shanika: 0 },
-    { game: 'Game 2', mohan: 0, shanika: 0 },
-    { game: 'Game 3', mohan: 0, shanika: 0 },
-    { game: 'Game 4', mohan: 0, shanika: 0 },
-    { game: 'Game 5', mohan: 0, shanika: 0 },
-  ];
+  scores: ScoreRow[] = [];
+
+  constructor(private scoreService: ScoreService) {
+    this.scores = this.scoreService.getScores();
+  }
 
   getMohanTotal(): number {
-    return this.scores.reduce((sum, score) => sum + score.mohan, 0);
+    return this.scoreService.getMohanTotal();
   }
 
   getShaniakaTotal(): number {
-    return this.scores.reduce((sum, score) => sum + score.shanika, 0);
+    return this.scoreService.getShanikaTotal();
   }
 
-  setScore(score: any, team: 'mohan' | 'shanika', value: number): void {
-    if (value === 0 || value === 1) {
-      score[team] = value;
-    }
+  setScore(score: ScoreRow, team: 'mohan' | 'shanika', value: number): void {
+    this.scoreService.setScore(score.game, team, value === 1 ? 1 : 0);
   }
 
-  validateScore(score: any, team: 'mohan' | 'shanika'): void {
+  validateScore(score: ScoreRow, team: 'mohan' | 'shanika'): void {
     const value = score[team];
     if (value !== 0 && value !== 1) {
-      score[team] = value === 1 ? 1 : 0;
+      this.scoreService.setScore(score.game, team, value === 1 ? 1 : 0);
     }
   }
 }

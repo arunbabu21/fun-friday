@@ -1,5 +1,12 @@
 <div class="game-container">
-  <h1>Game 5</h1>
-  <p>Welcome to Game 5! Have fun!</p>
+  <h1>Act It Out (Camera On Version)</h1>
+  <p>Team can select a player from opposit team. Player gets a film name privately in chat. They act it out silently.</p>
+
+  <div class="timer-area">
+    <div class="timer-display">{{ remaining() }}s</div>
+    <button class="timer-btn" (click)="toggleCountdown()">{{ running() ? 'Pause' : 'Ready' }}</button>
+    <div class="timer-message" [class.timeout]="message() === 'STop!!!!! Timeout'">{{ message() }}</div>
+  </div>
+
   <button [routerLink]="'/'" class="back-btn">← Back to Home</button>
 </div>
