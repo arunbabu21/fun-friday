@@ -18,7 +18,7 @@ export class Game1 {
   private clues = [
     ['Famous actor', 'Born in 1970', 'Starred in action movies', 'Has a beard', 'Won an Oscar'],
     ['Pop singer', 'From USA', 'Started in 2010s', 'Has blonde hair', 'Won Grammy'],
-    ['TV character', 'Comedy show', 'Wears glasses', 'Works in office', 'Has catchphrase'],
+    ['I founded a famous tech company.', 'dropped out of Harvard.', 'I am one of the richest people.', 'I co-founded Microsoft.', 'My name is Bill.'],
     ['Superhero', 'Marvel character', 'Has super strength', 'Wears red suit', 'From New York'],
     ['Historical figure', 'Scientist', 'Lived in 1800s', 'Made discovery', 'Nobel prize winner'],
     ['Fictional character', 'From book series', 'Young wizard', 'Has scar', 'Fights dark wizard']
@@ -28,7 +28,7 @@ export class Game1 {
   private answers = [
     'Chris Hemsworth',
     'Taylor Swift',
-    'Michael Scott',
+    'Bill Gates',
     'Spider-Man',
     'Marie Curie',
     'Harry Potter'
