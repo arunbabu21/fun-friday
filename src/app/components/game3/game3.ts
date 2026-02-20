@@ -112,6 +112,12 @@ Fill the 3-liter jug again, pour it into the 5-liter jug until it's full.
 The remaining water in the 3-liter jug is exactly 1 liter.
 Empty the 5-liter jug and pour the 1 liter from the 3-liter jug into it.
 Fill the 3-liter jug and pour it into the 5-liter jug. Now you have exactly 4 liters.` },
+    {
+      id: 6, title: 'Hat', question: `Three people stand in a line.
+Each wears a red or blue hat.
+They can see hats in front, not their own.
+They must guess their hat color.
+After silence from first two, third answers correctly.`, answer: `“Logical elimination based on others not answering.` },
   ];
 
   openPuzzle(id: number) {
