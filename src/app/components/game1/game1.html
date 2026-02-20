@@ -1,11 +1,137 @@
 <div class="game-container">
-  <h1>Act It Out (Camera On Version)</h1>
-  <p>Team can select a player from opposit team. Player gets a film name privately in chat. They act it out silently.</p>
+  <h1>Guess the person (Celebrity or film character)</h1>
+  <p>Rules: <br>
+    Reveal clues one by one.<br>
+    Teams can buzz (type in chat) anytime.<br>
+    Earlier guess = more points.<br>
+  </p>
 
-  <div class="timer-area">
-    <div class="timer-display">{{ remaining() }}s</div>
-    <button class="timer-btn" (click)="toggleCountdown()">{{ running() ? 'Pause' : 'Ready' }}</button>
-    <div class="timer-message" [class.timeout]="message() === 'STop!!!!! Timeout'">{{ message() }}</div>
+  <div class="clues-grid">
+    <!-- Column 1 -->
+    <div class="clue-column">
+      <div *ngIf="!isRevealed(0, 0)" class="clue-btn" (click)="revealClue(0, 0)">{{ getClueName(0, 0) }}</div>
+      <div *ngIf="isRevealed(0, 0)" class="clue-text">{{ clueGrid()[0][0] }}</div>
+      
+      <div *ngIf="!isRevealed(0, 1)" class="clue-btn" (click)="revealClue(0, 1)">{{ getClueName(0, 1) }}</div>
+      <div *ngIf="isRevealed(0, 1)" class="clue-text">{{ clueGrid()[0][1] }}</div>
+      
+      <div *ngIf="!isRevealed(0, 2)" class="clue-btn" (click)="revealClue(0, 2)">{{ getClueName(0, 2) }}</div>
+      <div *ngIf="isRevealed(0, 2)" class="clue-text">{{ clueGrid()[0][2] }}</div>
+      
+      <div *ngIf="!isRevealed(0, 3)" class="clue-btn" (click)="revealClue(0, 3)">{{ getClueName(0, 3) }}</div>
+      <div *ngIf="isRevealed(0, 3)" class="clue-text">{{ clueGrid()[0][3] }}</div>
+      
+      <div *ngIf="!isRevealed(0, 4)" class="clue-btn" (click)="revealClue(0, 4)">{{ getClueName(0, 4) }}</div>
+      <div *ngIf="isRevealed(0, 4)" class="clue-text">{{ clueGrid()[0][4] }}</div>
+      
+      <div class="answer-btn" (click)="revealAnswer(0)" [class.hidden]="revealedAnswers()[0]">Answer</div>
+      <div *ngIf="revealedAnswers()[0]" class="answer-text">Chris Hemsworth</div>
+    </div>
+    
+    <!-- Column 2 -->
+    <div class="clue-column">
+      <div *ngIf="!isRevealed(1, 0)" class="clue-btn" (click)="revealClue(1, 0)">{{ getClueName(1, 0) }}</div>
+      <div *ngIf="isRevealed(1, 0)" class="clue-text">{{ clueGrid()[1][0] }}</div>
+      
+      <div *ngIf="!isRevealed(1, 1)" class="clue-btn" (click)="revealClue(1, 1)">{{ getClueName(1, 1) }}</div>
+      <div *ngIf="isRevealed(1, 1)" class="clue-text">{{ clueGrid()[1][1] }}</div>
+      
+      <div *ngIf="!isRevealed(1, 2)" class="clue-btn" (click)="revealClue(1, 2)">{{ getClueName(1, 2) }}</div>
+      <div *ngIf="isRevealed(1, 2)" class="clue-text">{{ clueGrid()[1][2] }}</div>
+      
+      <div *ngIf="!isRevealed(1, 3)" class="clue-btn" (click)="revealClue(1, 3)">{{ getClueName(1, 3) }}</div>
+      <div *ngIf="isRevealed(1, 3)" class="clue-text">{{ clueGrid()[1][3] }}</div>
+      
+      <div *ngIf="!isRevealed(1, 4)" class="clue-btn" (click)="revealClue(1, 4)">{{ getClueName(1, 4) }}</div>
+      <div *ngIf="isRevealed(1, 4)" class="clue-text">{{ clueGrid()[1][4] }}</div>
+      
+      <div class="answer-btn" (click)="revealAnswer(1)" [class.hidden]="revealedAnswers()[1]">Answer</div>
+      <div *ngIf="revealedAnswers()[1]" class="answer-text">Taylor Swift</div>
+    </div>
+    
+    <!-- Column 3 -->
+    <div class="clue-column">
+      <div *ngIf="!isRevealed(2, 0)" class="clue-btn" (click)="revealClue(2, 0)">{{ getClueName(2, 0) }}</div>
+      <div *ngIf="isRevealed(2, 0)" class="clue-text">{{ clueGrid()[2][0] }}</div>
+      
+      <div *ngIf="!isRevealed(2, 1)" class="clue-btn" (click)="revealClue(2, 1)">{{ getClueName(2, 1) }}</div>
+      <div *ngIf="isRevealed(2, 1)" class="clue-text">{{ clueGrid()[2][1] }}</div>
+      
+      <div *ngIf="!isRevealed(2, 2)" class="clue-btn" (click)="revealClue(2, 2)">{{ getClueName(2, 2) }}</div>
+      <div *ngIf="isRevealed(2, 2)" class="clue-text">{{ clueGrid()[2][2] }}</div>
+      
+      <div *ngIf="!isRevealed(2, 3)" class="clue-btn" (click)="revealClue(2, 3)">{{ getClueName(2, 3) }}</div>
+      <div *ngIf="isRevealed(2, 3)" class="clue-text">{{ clueGrid()[2][3] }}</div>
+      
+      <div *ngIf="!isRevealed(2, 4)" class="clue-btn" (click)="revealClue(2, 4)">{{ getClueName(2, 4) }}</div>
+      <div *ngIf="isRevealed(2, 4)" class="clue-text">{{ clueGrid()[2][4] }}</div>
+      
+      <div class="answer-btn" (click)="revealAnswer(2)" [class.hidden]="revealedAnswers()[2]">Answer</div>
+      <div *ngIf="revealedAnswers()[2]" class="answer-text">Michael Scott</div>
+    </div>
+    
+    <!-- Column 4 -->
+    <div class="clue-column">
+      <div *ngIf="!isRevealed(3, 0)" class="clue-btn" (click)="revealClue(3, 0)">{{ getClueName(3, 0) }}</div>
+      <div *ngIf="isRevealed(3, 0)" class="clue-text">{{ clueGrid()[3][0] }}</div>
+      
+      <div *ngIf="!isRevealed(3, 1)" class="clue-btn" (click)="revealClue(3, 1)">{{ getClueName(3, 1) }}</div>
+      <div *ngIf="isRevealed(3, 1)" class="clue-text">{{ clueGrid()[3][1] }}</div>
+      
+      <div *ngIf="!isRevealed(3, 2)" class="clue-btn" (click)="revealClue(3, 2)">{{ getClueName(3, 2) }}</div>
+      <div *ngIf="isRevealed(3, 2)" class="clue-text">{{ clueGrid()[3][2] }}</div>
+      
+      <div *ngIf="!isRevealed(3, 3)" class="clue-btn" (click)="revealClue(3, 3)">{{ getClueName(3, 3) }}</div>
+      <div *ngIf="isRevealed(3, 3)" class="clue-text">{{ clueGrid()[3][3] }}</div>
+      
+      <div *ngIf="!isRevealed(3, 4)" class="clue-btn" (click)="revealClue(3, 4)">{{ getClueName(3, 4) }}</div>
+      <div *ngIf="isRevealed(3, 4)" class="clue-text">{{ clueGrid()[3][4] }}</div>
+      
+      <div class="answer-btn" (click)="revealAnswer(3)" [class.hidden]="revealedAnswers()[3]">Answer</div>
+      <div *ngIf="revealedAnswers()[3]" class="answer-text">Spider-Man</div>
+    </div>
+    
+    <!-- Column 5 -->
+    <div class="clue-column">
+      <div *ngIf="!isRevealed(4, 0)" class="clue-btn" (click)="revealClue(4, 0)">{{ getClueName(4, 0) }}</div>
+      <div *ngIf="isRevealed(4, 0)" class="clue-text">{{ clueGrid()[4][0] }}</div>
+      
+      <div *ngIf="!isRevealed(4, 1)" class="clue-btn" (click)="revealClue(4, 1)">{{ getClueName(4, 1) }}</div>
+      <div *ngIf="isRevealed(4, 1)" class="clue-text">{{ clueGrid()[4][1] }}</div>
+      
+      <div *ngIf="!isRevealed(4, 2)" class="clue-btn" (click)="revealClue(4, 2)">{{ getClueName(4, 2) }}</div>
+      <div *ngIf="isRevealed(4, 2)" class="clue-text">{{ clueGrid()[4][2] }}</div>
+      
+      <div *ngIf="!isRevealed(4, 3)" class="clue-btn" (click)="revealClue(4, 3)">{{ getClueName(4, 3) }}</div>
+      <div *ngIf="isRevealed(4, 3)" class="clue-text">{{ clueGrid()[4][3] }}</div>
+      
+      <div *ngIf="!isRevealed(4, 4)" class="clue-btn" (click)="revealClue(4, 4)">{{ getClueName(4, 4) }}</div>
+      <div *ngIf="isRevealed(4, 4)" class="clue-text">{{ clueGrid()[4][4] }}</div>
+      
+      <div class="answer-btn" (click)="revealAnswer(4)" [class.hidden]="revealedAnswers()[4]">Answer</div>
+      <div *ngIf="revealedAnswers()[4]" class="answer-text">Marie Curie</div>
+    </div>
+    
+    <!-- Column 6 -->
+    <div class="clue-column">
+      <div *ngIf="!isRevealed(5, 0)" class="clue-btn" (click)="revealClue(5, 0)">{{ getClueName(5, 0) }}</div>
+      <div *ngIf="isRevealed(5, 0)" class="clue-text">{{ clueGrid()[5][0] }}</div>
+      
+      <div *ngIf="!isRevealed(5, 1)" class="clue-btn" (click)="revealClue(5, 1)">{{ getClueName(5, 1) }}</div>
+      <div *ngIf="isRevealed(5, 1)" class="clue-text">{{ clueGrid()[5][1] }}</div>
+      
+      <div *ngIf="!isRevealed(5, 2)" class="clue-btn" (click)="revealClue(5, 2)">{{ getClueName(5, 2) }}</div>
+      <div *ngIf="isRevealed(5, 2)" class="clue-text">{{ clueGrid()[5][2] }}</div>
+      
+      <div *ngIf="!isRevealed(5, 3)" class="clue-btn" (click)="revealClue(5, 3)">{{ getClueName(5, 3) }}</div>
+      <div *ngIf="isRevealed(5, 3)" class="clue-text">{{ clueGrid()[5][3] }}</div>
+      
+      <div *ngIf="!isRevealed(5, 4)" class="clue-btn" (click)="revealClue(5, 4)">{{ getClueName(5, 4) }}</div>
+      <div *ngIf="isRevealed(5, 4)" class="clue-text">{{ clueGrid()[5][4] }}</div>
+      
+      <div class="answer-btn" (click)="revealAnswer(5)" [class.hidden]="revealedAnswers()[5]">Answer</div>
+      <div *ngIf="revealedAnswers()[5]" class="answer-text">Harry Potter</div>
+    </div>
   </div>
 
   <button [routerLink]="'/'" class="back-btn">← Back to Home</button>

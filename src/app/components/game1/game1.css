@@ -19,6 +19,21 @@ h1 {
 p {
   font-size: 1.2em;
   margin-bottom: 2em;
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(78, 205, 196, 0.2));
+  padding: 1.5em;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  max-width: 500px;
+  line-height: 1.6;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
+}
+
+p br {
+  margin-bottom: 0.5em;
+  display: block;
 }
 
 .back-btn {
@@ -82,4 +97,139 @@ p {
 
 .timer-message.timeout {
   color: #ff4d4f;
+}
+
+.clues-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  margin: 2em 0;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.clue-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.clue-btn {
+  padding: 0.8em 1em;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clue-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.clue-btn:active {
+  transform: translateY(0);
+}
+
+.clue-text {
+  padding: 0.8em 1em;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #333;
+  background: linear-gradient(135deg, #ffd54f 0%, #ffa726 100%);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  text-align: center;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(255, 215, 79, 0.3);
+  animation: revealClue 0.5s ease-out;
+}
+
+@keyframes revealClue {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.answer-btn {
+  padding: 0.8em 1.2em;
+  font-size: 0.9em;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);
+  text-align: center;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.answer-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(238, 90, 36, 0.4);
+  background: linear-gradient(135deg, #45a049 0%, #4CAF50 100%);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.answer-btn:active {
+  transform: translateY(0);
+}
+
+.answer-btn.hidden {
+  display: none;
+}
+
+.answer-text {
+  padding: 0.8em 1.2em;
+  font-size: 0.9em;
+  font-weight: 700;
+  color: #333;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  text-align: center;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);
+  animation: revealAnswer 0.5s ease-out;
+  margin-top: 0.5rem;
+}
+
+@keyframes revealAnswer {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

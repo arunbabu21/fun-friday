@@ -1,62 +1,59 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-game1',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './game1.html',
   styleUrl: './game1.css',
 })
 export class Game1 {
-  // reactive signals for timer state
-  remaining = signal(30);
-  running = signal(false);
-  message = signal('');
-  private intervalId: any = null;
+  // 2D array for clue grid (6 columns x 5 rows)
+  clueGrid = signal<(string | null)[][]>(
+    Array(6).fill(null).map(() => Array(5).fill(null))
+  );
 
-  // Toggle start / pause
-  toggleCountdown() {
-    if (this.running()) {
-      this.stopCountdown();
-    } else {
-      this.startCountdown();
-    }
+  // Sample clues for each position
+  private clues = [
+    ['Famous actor', 'Born in 1970', 'Starred in action movies', 'Has a beard', 'Won an Oscar'],
+    ['Pop singer', 'From USA', 'Started in 2010s', 'Has blonde hair', 'Won Grammy'],
+    ['TV character', 'Comedy show', 'Wears glasses', 'Works in office', 'Has catchphrase'],
+    ['Superhero', 'Marvel character', 'Has super strength', 'Wears red suit', 'From New York'],
+    ['Historical figure', 'Scientist', 'Lived in 1800s', 'Made discovery', 'Nobel prize winner'],
+    ['Fictional character', 'From book series', 'Young wizard', 'Has scar', 'Fights dark wizard']
+  ];
+
+  // Answers for each column
+  private answers = [
+    'Chris Hemsworth',
+    'Taylor Swift',
+    'Michael Scott',
+    'Spider-Man',
+    'Marie Curie',
+    'Harry Potter'
+  ];
+
+  // Track revealed answers
+  revealedAnswers = signal<boolean[]>(Array(6).fill(false));
+
+  revealClue(column: number, row: number) {
+    const currentGrid = this.clueGrid();
+    currentGrid[column][row] = this.clues[column][row];
+    this.clueGrid.set([...currentGrid]);
   }
 
-  startCountdown() {
-    // ensure any previous interval cleared
-    this.stopCountdown();
-    // if at initial state, set to 30
-    if (this.remaining() <= 0 || this.remaining() > 30) {
-      this.remaining.set(30);
-    }
-    this.message.set('Ready');
-    this.running.set(true);
-    this.intervalId = setInterval(() => {
-      const val = this.remaining();
-      if (val <= 0) {
-        this.stopCountdown();
-        this.message.set('Stop!!!!! Timeout');
-        // auto-reset after short delay so user sees 0 and message
-        setTimeout(() => {
-          this.remaining.set(30);
-        }, 1000);
-        return;
-      }
-      this.remaining.set(val - 1);
-    }, 1000);
+  revealAnswer(column: number) {
+    const currentRevealed = this.revealedAnswers();
+    currentRevealed[column] = true;
+    this.revealedAnswers.set([...currentRevealed]);
   }
 
-  stopCountdown() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
-    }
-    this.running.set(false);
+  isRevealed(column: number, row: number): boolean {
+    return this.clueGrid()[column][row] !== null || this.revealedAnswers()[column];
   }
 
-  // cleanup when component destroyed
-  ngOnDestroy() {
-    this.stopCountdown();
+  getClueName(column: number, row: number): string {
+    return `Clue ${row + 1}`;
   }
 }
