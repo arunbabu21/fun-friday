@@ -35,7 +35,7 @@ export class Game2 {
   getImagePath(name: string | null) {
     // use dot-relative path so browser resolves assets relative to the current
     // served path (works for GitHub Pages served at /<repo>/)
-    return name ? 'assets/game2/' + name : '';
+    return name ? './assets/game2/' + name : '';
   }
 
   toggleCountdown() {

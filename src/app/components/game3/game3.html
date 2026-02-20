@@ -1,5 +1,42 @@
 <div class="game-container">
-  <h1>Game 3</h1>
-  <p>Welcome to Game 3! Have fun!</p>
+  <h1>Logic Puzzle Round</h1>
+  <p>Team will get 1 minute to find the answer. If not able to solve, then next team can anser. best of 5 wins.</p>
+
+  <div class="puzzle-buttons">
+    <button
+      *ngFor="let puzzle of puzzles"
+      class="puzzle-btn"
+      (click)="openPuzzle(puzzle.id)"
+    >
+      {{ puzzle.title }}
+    </button>
+  </div>
+
+  <!-- Modal Dialog -->
+  <div class="modal-overlay" *ngIf="selectedPuzzle()" (click)="closePuzzle()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Puzzle {{ selectedPuzzle() }}</h2>
+        <button class="modal-close" (click)="closePuzzle()">×</button>
+      </div>
+      <div class="modal-body">
+        <p>{{ getPuzzleQuestion() }}</p>
+        <div class="answer-section" *ngIf="showAnswer()">
+          <p class="answer-text"><strong>Answer:</strong> {{ getPuzzleAnswer() }}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn modal-btn-secondary" (click)="toggleAnswer()">{{ showAnswer() ? 'Hide Answer' : 'Show Answer' }}</button>
+        <button class="modal-btn" (click)="closePuzzle()">Close</button>
+      </div>
+    </div>
+  </div>
+
   <button [routerLink]="'/'" class="back-btn">← Back to Home</button>
+</div>
+
+<div class="timer-area">
+  <div class="timer-display">{{ remaining() }}s</div>
+  <button class="timer-btn" (click)="toggleCountdown()">{{ running() ? 'Pause' : 'Ready' }}</button>
+  <div class="timer-message" [class.timeout]="message() === 'Stop!!!!! Timeout'">{{ message() }}</div>
 </div>
