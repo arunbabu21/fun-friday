@@ -10,7 +10,7 @@
       </div>
       @for (score of scores; track score.game) {
         <div class="table-row">
-          <div class="table-cell game-btn-cell" [routerLink]="score.game === 'Game 1' ? '/game1' : score.game === 'Game 2' ? '/game2' : score.game === 'Game 3' ? '/game3' : score.game === 'Game 4' ? '/game4' : '/game5'">{{ score.game }}</div>
+          <div class="table-cell game-btn-cell" [routerLink]="score.game === 'Game 1' ? '/game1' : score.game === 'Game 2' ? '/game2' : score.game === 'Game 3' ? '/game3' : score.game === 'Game 4' ? '/game4' : score.game === 'Game 5' ? '/game5' : '/game6'">{{ score.game }}</div>
           <div class="table-cell score">
             <button class="score-btn-single" (click)="setScore(score, 'mohan', score.mohan === 0 ? 1 : 0)">{{ score.mohan }}</button>
           </div>

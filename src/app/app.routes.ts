@@ -5,6 +5,7 @@ import { Game3 } from './components/game3/game3';
 import { Game4 } from './components/game4/game4';
 import { Game5 } from './components/game5/game5';
 import { Game1 } from './components/game1/game1';
+import { Game6 } from './components/game6/game6';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -13,4 +14,5 @@ export const routes: Routes = [
   { path: 'game3', component: Game3 },
   { path: 'game4', component: Game4 },
   { path: 'game5', component: Game5 },
+  { path: 'game6', component: Game6 },
 ];

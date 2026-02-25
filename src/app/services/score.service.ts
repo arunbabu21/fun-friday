@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 export type ScoreRow = { game: string; mohan: number; shanika: number };
 
-const STORAGE_KEY = 'funfriday_scores_v1';
+const STORAGE_KEY = 'funfriday_scores_v2';
 
 @Injectable({ providedIn: 'root' })
 export class ScoreService {
@@ -12,6 +12,7 @@ export class ScoreService {
     { game: 'Game 3', mohan: 0, shanika: 0 },
     { game: 'Game 4', mohan: 0, shanika: 0 },
     { game: 'Game 5', mohan: 0, shanika: 0 },
+    { game: 'Game 6', mohan: 0, shanika: 0 },
   ];
 
   constructor() {
