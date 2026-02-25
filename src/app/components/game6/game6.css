@@ -255,3 +255,91 @@ p {
 .close-btn:hover {
   background: #ff1a1a;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .game-container {
+    padding: 1em;
+    min-height: auto;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 0.8em;
+  }
+
+  .background-image,
+  .no-image-placeholder,
+  .number-grid {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    aspect-ratio: 4/5;
+  }
+
+  .background-image,
+  .no-image-placeholder {
+    height: 437.5px;
+  }
+
+  .number-grid {
+    height: 437.5px;
+  }
+
+  .grid-cell {
+    font-size: 1em;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 0.8rem 0;
+  }
+
+  .reset-btn,
+  .show-image-btn,
+  .back-btn {
+    width: 100%;
+    max-width: 250px;
+    margin: 0;
+  }
+
+  .image-buttons {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.8rem;
+  }
+
+  .image-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-container {
+    padding: 0.5em;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  .background-image,
+  .no-image-placeholder,
+  .number-grid {
+    max-width: 300px;
+    height: 375px;
+  }
+
+  .grid-cell {
+    font-size: 0.9em;
+  }
+
+  .image-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1em;
+  }
+}
